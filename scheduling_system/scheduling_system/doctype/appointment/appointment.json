@@ -1,0 +1,123 @@
+{
+ "actions": [],
+ "autoname": "UUID",
+ "creation": "2025-04-03 19:15:35.777315",
+ "default_view": "Calendar",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_jilv",
+  "client_name",
+  "start_date",
+  "end_date",
+  "duration",
+  "description",
+  "seller",
+  "status",
+  "amended_from",
+  "published",
+  "route"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_jilv",
+   "fieldtype": "Section Break",
+   "label": "Make the appointment"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Appointment",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Datetime",
+   "label": "Start date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Datetime",
+   "label": "End date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "duration",
+   "fieldtype": "Time",
+   "label": "Duration"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "seller",
+   "fieldtype": "Link",
+   "label": "Seller",
+   "options": "User"
+  },
+  {
+   "fieldname": "client_name",
+   "fieldtype": "Data",
+   "label": "Client Name",
+   "no_copy": 1,
+   "print_hide": 1,
+   "search_index": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "Published"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Scheduled\nFinished\nCanceled"
+  }
+ ],
+ "grid_page_length": 50,
+ "has_web_view": 1,
+ "index_web_pages_for_search": 1,
+ "is_calendar_and_gantt": 1,
+ "is_published_field": "published",
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-04-05 14:21:04.050809",
+ "modified_by": "Administrator",
+ "module": "Scheduling System",
+ "name": "Appointment",
+ "naming_rule": "UUID",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "route": "appointment",
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
