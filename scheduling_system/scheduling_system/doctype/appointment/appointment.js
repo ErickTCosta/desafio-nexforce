@@ -26,10 +26,9 @@ frappe.ui.form.on("Appointment", {
 		const r = await frappe.call({
 			method: "scheduling_system.scheduling_system.doctype.appointment.appointment.check_conflict",
 			args: {
+				seller: frm.doc.seller,
 				start_date: frm.doc.start_date,
 				duration: frm.doc.duration,
-				name: frm.doc.name || null,
-				seller: frm.doc.seller,
 			},
 		});
 		// verifica o metodo do r

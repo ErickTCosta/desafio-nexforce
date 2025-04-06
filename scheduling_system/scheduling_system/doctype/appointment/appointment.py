@@ -18,19 +18,16 @@ def check_conflict(start_date, duration, name=None, seller=None):
     end_date = start_date + timedelta(hours=time_str_to_hours(duration))
 
     filters = {
+        "seller": seller,  
         "docstatus": ["<", 2],
         "start_date": ["<", end_date],
         "end_date": [">", start_date],
-        "seller": seller,  # Adiciona o filtro para o mesmo seller
     }
-
-    if name:
-        filters["name"] = ["!=", name]
 
     conflicting = frappe.get_all(
         "Appointment",
         filters=filters,
-        fields=["name", "start_date", "end_date", "seller"]
+        fields=[ "seller","start_date", "end_date"]
     )
 
     print("conflicting", conflicting)  # Para depuração
