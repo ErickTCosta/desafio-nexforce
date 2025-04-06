@@ -6,10 +6,14 @@ frappe.views.calendar["Appointment"] = {
 		title: "client_name",
 		status: "status",
 	},
-	style_map: {
-		Scheduled: "green",
-		Finished: "blue",
-		Cancelled: "red",
+	style_map: function (status) {
+		if (status === "Scheduled") {
+			return "green";
+		} else if (status === "Finished") {
+			return "blue";
+		} else if (status === "Cancelled") {
+			return "red";
+		}
 	},
 	order_by: "start_date",
 };

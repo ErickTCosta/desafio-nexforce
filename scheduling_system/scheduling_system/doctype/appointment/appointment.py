@@ -13,7 +13,7 @@ class Appointment(WebsiteGenerator):
 	
 	
 @frappe.whitelist()
-def check_conflict(start_date, duration, name=None):
+def check_conflict(start_date, duration, name=None, seller=None):
     start_date = get_datetime(start_date)
     end_date = start_date + timedelta(hours=time_str_to_hours(duration))
 
@@ -21,6 +21,7 @@ def check_conflict(start_date, duration, name=None):
         "docstatus": ["<", 2],
         "start_date": ["<", end_date],
         "end_date": [">", start_date],
+        "seller": seller,  # Adiciona o filtro para o mesmo seller
     }
 
     if name:
@@ -29,11 +30,11 @@ def check_conflict(start_date, duration, name=None):
     conflicting = frappe.get_all(
         "Appointment",
         filters=filters,
-        fields=["name", "start_date", "end_date"]
+        fields=["name", "start_date", "end_date", "seller"]
     )
 
-    return True if conflicting else False
-
+    print("conflicting", conflicting)  # Para depuração
+    return conflicting  # Retorna a lista de conflitos diretamente
 
 def time_str_to_hours(time_str):
     h, m, s = map(int, time_str.split(":"))

@@ -6,11 +6,13 @@
 
 // 	},
 // });
+
 frappe.ui.form.on("Appointment", {
 	validate: async function (frm) {
 		const now = moment();
 		const start = moment(frm.doc.start_date);
 
+		console.log(frm.doc.start_date, "estou aqui");
 		const hour = start.hour();
 		if (hour < 8 || hour >= 20) {
 			frappe.throw("Só é possível agendar entre 08:00 e 20:00.");
@@ -27,10 +29,14 @@ frappe.ui.form.on("Appointment", {
 				start_date: frm.doc.start_date,
 				duration: frm.doc.duration,
 				name: frm.doc.name || null,
+				seller: frm.doc.seller,
 			},
 		});
+		// verifica o metodo do r
+		console.log(r, "resposta do backend");
 
-		if (r.message === true) {
+		// Verifica se há conflitos retornados pelo backend
+		if (r.message && r.message.length > 0) {
 			frappe.throw("Esse horário entra em conflito com outro agendamento.");
 		}
 	},
@@ -45,6 +51,7 @@ frappe.ui.form.on("Appointment", {
 	},
 });
 
+// calcular data de termino e atruir o valor ao campo da mesma
 function calcular_end_date(frm) {
 	if (frm.doc.start_date && frm.doc.duration) {
 		const start = moment(frm.doc.start_date);
