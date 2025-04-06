@@ -30,7 +30,6 @@ def check_conflict(start_date, duration, name=None, seller=None):
         fields=[ "seller","start_date", "end_date"]
     )
 
-    print("conflicting", conflicting)  # Para depuração
     return conflicting  # Retorna a lista de conflitos diretamente
 
 def time_str_to_hours(time_str):
